@@ -1,0 +1,58 @@
+{
+  "identifier" : "FCA02883",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "199.9",
+      "familyShareable" : false,
+      "internalID" : "3C843D6A",
+      "localizations" : [
+        {
+          "description" : "10",
+          "displayName" : "Gold Membership",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "199.90",
+          "displayName" : "Gold Üyelik",
+          "locale" : "tr"
+        }
+      ],
+      "productID" : "goldMember",
+      "referenceName" : "Gold Üyelik",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "169.90",
+      "familyShareable" : false,
+      "internalID" : "D57BA4F5",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "169.90",
+          "displayName" : "Premium Üyelik",
+          "locale" : "tr"
+        }
+      ],
+      "productID" : "premiumMember",
+      "referenceName" : "Premium Üyelik",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}
