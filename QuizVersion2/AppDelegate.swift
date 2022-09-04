@@ -8,8 +8,6 @@
 import UIKit
 import CoreData
 import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
 import GoogleSignIn
 import GoogleMobileAds
 

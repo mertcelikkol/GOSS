@@ -245,30 +245,84 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     @objc func cikisYap(){
         icBosal()
-        if let auth = auth {
-            do {
-                try auth.signOut()
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+        
+        let twoOptionAlert = UIAlertController(title: "Denizcilik Sınavı", message: "Hesabınızdan çıkış mı yapmak istiyorsunuz yoksa hesabınızı silmek mi istiyorsunuz?", preferredStyle: .actionSheet)
+        
+        
+        let logoutOption = UIAlertAction(title: "Çıkış Yap", style: .cancel) { action in
+            if let auth = self.auth {
+                do {
+                    try auth.signOut()
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                    }
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+            } else {
+                do {
+                    try Auth.auth().signOut()
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                    }
                 }
+                
             }
-        } else {
-            do {
-                try Auth.auth().signOut()
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
-                }
-            }
-            
         }
+        
+        let deleteOption = UIAlertAction(title: "Hesabımı Sil", style: .default) { action in
+            if let auth = self.auth {
+                if let currentUser = auth.currentUser {
+                    currentUser.delete { error in
+                        do {
+                            try self.auth?.signOut()
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                            }
+                        } catch {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                            }
+                        }
+                    }
+                } else {
+                    do {
+                        try self.auth?.signOut()
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                        }
+                    } catch {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                        }
+                    }
+                }
+            } else {
+                do {
+                    try self.auth?.signOut()
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "CategoriesToVC", sender: nil)
+                    }
+                }
+            }
+        }
+        
+        twoOptionAlert.addAction(logoutOption)
+        twoOptionAlert.addAction(deleteOption)
+        
+        self.present(twoOptionAlert, animated: true, completion: nil)
+        
+        
     }
     
     @available(iOS 14.0, *)
