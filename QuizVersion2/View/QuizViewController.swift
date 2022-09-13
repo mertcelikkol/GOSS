@@ -72,9 +72,6 @@ class QuizViewController: UIViewController {
     // var bannerView : GADBannerView!
     var kullanici = ViewController.kullanici
     
-
-
-
     override func viewDidLoad() {
             super.viewDidLoad()
             gunduzMod()
@@ -92,10 +89,11 @@ class QuizViewController: UIViewController {
             for tiklanan in buttonListesi {
                 tiklanan.addTarget(self, action: #selector(butonaTiklandi(_:)), for: .touchUpInside)
                 tiklanan.titleLabel?.numberOfLines = 0
+                tiklanan.contentVerticalAlignment = .center
                 tiklanan.layer.borderWidth = 1
                 tiklanan.layer.borderColor = UIColor(red: 5/255, green: 1, blue: 1, alpha: 1).cgColor
                 tiklanan.layer.cornerRadius = 10
-                tiklanan.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+                tiklanan.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
                 tiklanan.layoutMarginsDidChange()
             }
             
@@ -113,52 +111,8 @@ class QuizViewController: UIViewController {
             let nextGestureRecog = UITapGestureRecognizer(target: self, action: #selector(yeniSoruYukle))
             nextQuestionButton.addGestureRecognizer(nextGestureRecog)
             
-        
-            // Reklam Olayı
-            /*
-            bannerView = GADBannerView(frame: adsView.frame)
-            bannerView.rootViewController = self
-            addBannerViewToView(bannerView)
-            if let kullanici = kullanici {
-                print("NEREYE GİRİYOR 1")
-                if kullanici.memberType != .standart {
-                    self.adsView.frame.size.height = 0
-                }
-            } else {
-                print("NEREYE GİRİYOR 2")
-                if let guncel = auth?.currentUser {
-                    print("NEREYE GİRİYOR 3")
-                   
-                    
-                }
-                
-            }
-            */
         }
-        /*
-        func addBannerViewToView(_ bannerView: GADBannerView) {
-            bannerView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(bannerView)
-            view.addConstraints(
-              [NSLayoutConstraint(item: bannerView,
-                                  attribute: .top,
-                                  relatedBy: .equal,
-                                  toItem: adsView,
-                                  attribute: .top,
-                                  multiplier: 1,
-                                  constant: 0),
-               NSLayoutConstraint(item: bannerView,
-                                  attribute: .centerX,
-                                  relatedBy: .equal,
-                                  toItem: adsView,
-                                  attribute: .centerX,
-                                  multiplier: 1,
-                                  constant: 0)
-              ])
-            bannerView.adUnitID = "ca-app-pub-6292749914687688/9897219513"
-            bannerView.load(GADRequest())
-           }
-        */
+        
         func circularAnimation(){
             // remainTimeText.frame.origin.x - remainTimeText.frame.width / 10
             let merkezAyarlama = CGPoint(x: UIScreen.main.bounds.width - (50), y: remainTimeText.frame.origin.y + remainTimeText.frame.height / 2)
@@ -401,9 +355,11 @@ class QuizViewController: UIViewController {
                     if let cevapA = gelenGuncelSoru.option_a {
                         self.firstButton.isHidden = false
                         self.firstButton.setTitle(cevapA, for: .normal)
+                        self.firstButton.titleLabel?.numberOfLines = 0
                         self.firstButton.layer.borderColor = UIColor(red: 5/255, green: 1, blue: 1, alpha: 1).cgColor
                         self.firstButton.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
                         self.firstButton.layoutMarginsDidChange()
+                        
                         
                         if scrollWidth < self.firstButton.frame.size.width {
                             scrollWidth = self.firstButton.frame.size.width
@@ -417,6 +373,7 @@ class QuizViewController: UIViewController {
                     if let cevapB = gelenGuncelSoru.option_b {
                         self.secondButton.isHidden = false
                         self.secondButton.setTitle(cevapB, for: .normal)
+                        self.secondButton.titleLabel?.numberOfLines = 0
                         self.secondButton.layer.borderColor = UIColor(red: 5/255, green: 1, blue: 1, alpha: 1).cgColor
                         self.secondButton.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
                         self.secondButton.layoutMarginsDidChange()
@@ -433,10 +390,11 @@ class QuizViewController: UIViewController {
                     if let cevapC = gelenGuncelSoru.option_c {
                         self.thirdButton.isHidden = false
                         self.thirdButton.setTitle(cevapC, for: .normal)
+                        self.thirdButton.titleLabel?.numberOfLines = 0
                         self.thirdButton.layer.borderColor = UIColor(red: 5/255, green: 1, blue: 1, alpha: 1).cgColor
                         self.thirdButton.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
                         self.thirdButton.layoutMarginsDidChange()
-                        
+                       
                         if scrollWidth < self.thirdButton.frame.size.width {
                             scrollWidth = self.thirdButton.frame.size.width
                         }
@@ -448,6 +406,7 @@ class QuizViewController: UIViewController {
                     if let cevapD = gelenGuncelSoru.option_d {
                         self.fourthButton.isHidden = false
                         self.fourthButton.setTitle(cevapD, for: .normal)
+                        self.fourthButton.titleLabel?.numberOfLines = 0
                         self.fourthButton.layer.borderColor = UIColor(red: 5/255, green: 1, blue: 1, alpha: 1).cgColor
                         self.fourthButton.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
                         self.fourthButton.layoutMarginsDidChange()
@@ -463,6 +422,7 @@ class QuizViewController: UIViewController {
                     if let cevapE = gelenGuncelSoru.option_e {
                         self.fifthButton.isHidden = false
                         self.fifthButton.setTitle(cevapE, for: .normal)
+                        self.fifthButton.titleLabel?.numberOfLines = 0
                         self.fifthButton.layer.borderColor = UIColor(red: 5/255, green: 1, blue: 1, alpha: 1).cgColor
                         self.fifthButton.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
                         self.fifthButton.layoutMarginsDidChange()
@@ -476,9 +436,8 @@ class QuizViewController: UIViewController {
                     }
                     
                     // ScrollView Ayarla
-                    
-                    scrollHeight = scrollHeight + CGFloat(50)
                     self.scrollView.contentSize = CGSize(width: scrollWidth, height: scrollHeight)
+                    self.scrollView.updateConstraintsIfNeeded()
                     
                     
                     self.resultText.isHidden = false
@@ -545,9 +504,10 @@ class QuizViewController: UIViewController {
                         
                         var mevcutScrollHeight = self.scrollView.contentSize.height
                         mevcutScrollHeight = mevcutScrollHeight + resultText.frame.size.height
-                        mevcutScrollHeight = mevcutScrollHeight + resultDetails.frame.size.height + CGFloat(50)
+                        mevcutScrollHeight = mevcutScrollHeight + resultDetails.frame.size.height + CGFloat(200)
                         
                         self.scrollView.contentSize = CGSize(width: self.scrollView.contentSize.width, height: mevcutScrollHeight)
+                        self.scrollView.updateConstraintsIfNeeded()
                         
                     } else {
                         AudioServicesPlayAlertSound(1105)
@@ -566,10 +526,10 @@ class QuizViewController: UIViewController {
                             
                             var mevcutScrollHeight = self.scrollView.contentSize.height
                             mevcutScrollHeight = mevcutScrollHeight + resultText.frame.size.height
-                            mevcutScrollHeight = mevcutScrollHeight + resultDetails.frame.size.height + CGFloat(50)
+                            mevcutScrollHeight = mevcutScrollHeight + resultDetails.frame.size.height + CGFloat(200)
                             
                             self.scrollView.contentSize = CGSize(width: self.scrollView.contentSize.width, height: mevcutScrollHeight)
-                            
+                            self.scrollView.updateConstraintsIfNeeded()
                         }
                         
                         
